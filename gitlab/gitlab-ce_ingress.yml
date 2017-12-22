@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: gitlabce-gitlab-ce 
+  name: gitlab-ce-ingress
+spec:
+  rules:
+  - host: gitlab.dev.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: gitlabce-gitlab-ce-svc
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - gitlab.dev.example.com
+    secretName: registry-server-tls 

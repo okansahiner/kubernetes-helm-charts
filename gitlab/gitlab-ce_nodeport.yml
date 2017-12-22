@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: gitlabce-gitlab-ce
+    chart: gitlab-ce-0.2.1
+    heritage: Tiller
+    release: gitlabce
+  name: gitlabce-gitlab-ce
+  namespace: cicd
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: ssh
+    port: 22
+    protocol: TCP
+    targetPort: ssh
+  selector:
+    app: gitlabce-gitlab-ce
+  sessionAffinity: None
+  type: NodePort
